@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renderização em Tempo Real</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <img src="img/logo.png" alt="Logo do Site">
+        <h1>Renderização em Tempo Real</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Exemplo de Uso</a>
+        <a href="three.htm">Biblioteca Three</a>
+        <a href="playCanvas.html">Biblioteca PlayCanvas</a>
+        <a href="Babilonia.html">Biblioteca Babilonia</a>
+    </nav>
+<body> 
+   <!-- Adicione a referência ao PlayCanvas Engine -->
+   <script src="https://threejs.org/build/three.min.js"></script>
+   <script>
+    function init() {
+        const WIDTH = window.innerWidth;
+        const HEIGHT = window.innerHeight;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(WIDTH, HEIGHT);
+        renderer.setClearColor(0xDDDDDD, 1);
+        document.body.appendChild(renderer.domElement);
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(70, WIDTH / HEIGHT, 0.1, 10000);
+        camera.position.z = 50;
+        scene.add(camera);
+
+        const createCube = () => {
+            const boxGeometry = new THREE.BoxGeometry(10, 10, 10);
+            const basicMaterial = new THREE.MeshBasicMaterial({ color: 0x0095DD });
+            const cube = new THREE.Mesh(boxGeometry, basicMaterial);
+            cube.position.x = -25;
+            cube.rotation.set(0.4, 0.2, 0);
+            scene.add(cube);
+            return cube;
+        };
+
+        const createTorus = () => {
+            const torusGeometry = new THREE.TorusGeometry(7, 1, 6, 12);
+            const phongMaterial = new THREE.MeshPhongMaterial({ color: 0xFF9500 });
+            const torus = new THREE.Mesh(torusGeometry, phongMaterial);
+            scene.add(torus);
+            return torus;
+        };
+
+        const createDodecahedron = () => {
+            const strangeGeometry = new THREE.DodecahedronGeometry(7);
+            const lambertMaterial = new THREE.MeshLambertMaterial({ color: 0xEAEFF2 });
+            const dodecahedron = new THREE.Mesh(strangeGeometry, lambertMaterial);
+            dodecahedron.position.x = 25;
+            scene.add(dodecahedron);
+            return dodecahedron;
+        };
+
+        const cube = createCube();
+        const torus = createTorus();
+        const dodecahedron = createDodecahedron();
+
+        const light = new THREE.PointLight(0xFFFFFF);
+        light.position.set(-10, 15, 50);
+        scene.add(light);
+
+        const animate = () => {
+            const t = Date.now() * 0.001; // Use o tempo atual para criar uma animação suave
+            cube.rotation.y += 0.01;
+            torus.scale.y = Math.abs(Math.sin(t));
+            dodecahedron.position.y = -7 * Math.sin(t * 2);
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+        };
+
+        animate();
+    }
+
+    init();
+</script>
+</body>
+</html>
