@@ -1,40 +1,71 @@
-html, body, canvas {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    width: 100%; 
-    height: 100%;
+:root {
+    --branco: #ffffff;
+    --oscuro: #212121;
+    --primario: #ffc107;
+    --secundario: #0097a7;
+    --cinzaClaro: #dfe9f3;
+}
+/* Globais */
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+body {
+    font-size: 16px; /* 1rem = 10px */
+    font-family: 'Krub', sans-serif;
+    background-image: linear-gradient(to top, var(--cinzaClaro) 0%, var(--branco) 100% );
 }
 header {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    width: 100%;
 }
-
+.contenedor {
+    max-width: 120rem;
+    margin: 0 auto;
+}
 header img {
-    max-height: 40px;
+    max-height: 20%;
+    width: 20%;
+    display: block;
+    margin: 15px auto;
+}
+.nav-bg {
+    background-color: var(--secundario);
+}
+.navegacao-principal {
+    display: flex;
+    flex-direction: column;
+}
+@media (min-width: 768px) {
+    .navegacao-principal {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
 
-nav {
-    background-color: #444;
-    padding: 10px;
+.navegacao-principal a {
+    display: block;
     text-align: center;
-}
-
-nav a {
-    color: white;
+    color: var(--branco);
     text-decoration: none;
-    margin: 0 15px;
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 1rem;
 }
+.navegacao-principal a:hover {
+    background-color: var(--primario);
+    color: var(--oscuro);
+}
+/*=================================================================*/
 
 section {
     padding: 20px;
     display: grid;  
+    background-color: rgb(5, 0, 22);
 }
 h2 {
     font-size: 1.5;
@@ -78,6 +109,17 @@ h2 {
     transform: scale(1.5);
     margin: 10%;
 }
-
-
-
+canvas {
+    width: 100%; /* Ajuste a largura conforme necessário */
+    height: auto;
+    display: block;
+    border: 1px solid #ccc; /* Adiciona uma borda para visualização */
+}
+@media (min-width: 768px) {
+   /* nav {
+        justify-content: flex-end;
+    }*/
+    canvas {
+        width: 100%;
+    }
+}

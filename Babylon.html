@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Renderização em Tempo Real</title>
-    <link rel="stylesheet" href="css/test.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
@@ -21,10 +21,14 @@
             <a href="Babylon.html"> Babylon</a>
         </nav>
     </div>
-    
-    <div id="canvas-container"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/Detector.js"></script>
-    <script src="https://threejs.org/build/three.min.js"></script>
-    <script src="js/main/Three.js"></script>
+
+        <!-- Cria um elemento de canvas no HTML com o ID "render-canvas". Este será o local onde a cena 3D será renderizada.-->
+        <canvas id="render-canvas"></canvas>
+
+    <!-- Importe a biblioteca Babylon.js, que é uma biblioteca JavaScript para renderização 3D no navegador.-->
+    <script src="https://cdn.babylonjs.com/babylon.js"></script> 
+    <script src="js/main/script.js"></script>
+    <script src="js/main/Babylon.js"></script>
+
 </body>
 </html>
